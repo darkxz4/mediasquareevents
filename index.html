@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Square Events LLC | Creative Media & Event Solutions</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #0b0b0f;
+      font-family: 'Inter', sans-serif;
+      color: #f0f2f5;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    .violet {
+      color: #c77dff;
+    }
+    h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+      border-left: 6px solid #c77dff;
+      padding-left: 1.2rem;
+    }
+    .card {
+      background: #16161e;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.6);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 1px solid #2a2a33;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 40px -12px #c77dff40;
+      border-color: #c77dff;
+    }
+    .lang-chip {
+      background: #2a2a33;
+      color: #e0e0e0;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: inline-block;
+      border: 1px solid #3a3a48;
+    }
+    .lang-chip i {
+      color: #c77dff;
+      margin-right: 6px;
+    }
+    .grid-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-top: 1.5rem;
+    }
+    .media-card {
+      background: #16161e;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 1px solid #2a2a33;
+      transition: 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .media-card:hover {
+      border-color: #c77dff;
+      transform: scale(1.01);
+    }
+    .media-thumb {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background: #22222e;
+      overflow: hidden;
+    }
+    .media-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .play-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .media-card:hover .play-overlay {
+      opacity: 1;
+    }
+    .play-icon {
+      background: #c77dff;
+      color: #0b0b0f;
+      width: 52px;
+      height: 52px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 0 20px #c77dffaa;
+    }
+    .media-caption {
+      padding: 1rem 1.2rem 1.2rem;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .media-caption span {
+      color: #c77dff;
+      font-size: 0.85rem;
+      background: #2a2a33;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+      margin: 2rem 0 2.5rem;
+    }
+    .service-card {
+      background: #16161e;
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      border: 1px solid #2a2a33;
+      transition: all 0.2s;
+    }
+    .service-card:hover {
+      border-color: #c77dff;
+      transform: translateY(-4px);
+    }
+    .service-icon {
+      font-size: 2.2rem;
+      color: #c77dff;
+      margin-bottom: 1.2rem;
+    }
+    .service-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    .service-card p {
+      color: #b0b3c0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin: 2.5rem 0;
+    }
+    .info-block {
+      background: #16161e;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      border: 1px solid #2a2a33;
+      height: 100%;
+    }
+    .info-block h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      color: #c77dff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .skills-grid ul {
+      list-style: none;
+    }
+    .skills-grid li {
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+    .skills-grid li i {
+      color: #c77dff;
+      font-size: 0.85rem;
+      margin-top: 0.2rem;
+      width: 1.1rem;
+    }
+    .tech-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin: 1.2rem 0 1rem;
+    }
+    .why-list {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+    .why-list li {
+      margin-bottom: 0.9rem;
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+    }
+    .why-list li i {
+      color: #c77dff;
+      font-size: 1rem;
+      margin-top: 0.2rem;
+    }
+    .profile-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      gap: 2rem;
+    }
+    .name-title h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .name-title .violet {
+      color: #c77dff;
+    }
+    .name-title .subhead {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #c0c4d0;
+      margin-top: 0.5rem;
+    }
+    .contact-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      color: #b0b3c0;
+    }
+    .contact-details i {
+      width: 1.2rem;
+    }
+    .profile-right {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .profile-badge {
+      background: #16161e;
+      border-radius: 60px;
+      padding: 0.6rem 1.5rem;
+      border: 1px solid #c77dff;
+      font-weight: 500;
+      box-shadow: 0 0 15px #c77dff30;
+      white-space: nowrap;
+    }
+    /* Logo image styling */
+    .company-logo {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #c77dff;
+      box-shadow: 0 0 20px rgba(199, 125, 255, 0.4);
+      background: #1c1c26; /* fallback background */
+    }
+    .summary-card {
+      background: #1c1c26;
+      border-radius: 2rem;
+      padding: 2rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid #32323e;
+      font-size: 1.1rem;
+      color: #dddee9;
+    }
+    .portfolio-btn-wrapper {
+      text-align: center;
+      margin: 3rem 0 2rem;
+    }
+    .portfolio-btn {
+      background: #c77dff;
+      color: #0b0b0f;
+      padding: 0.9rem 2.5rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      text-decoration: none;
+      display: inline-block;
+      border: 2px solid #c77dff;
+      transition: all 0.2s;
+      box-shadow: 0 8px 20px rgba(199, 125, 255, 0.3);
+      letter-spacing: 0.5px;
+    }
+    .portfolio-btn i {
+      margin-right: 8px;
+    }
+    .portfolio-btn:hover {
+      background: transparent;
+      color: #c77dff;
+      transform: scale(1.02);
+      box-shadow: 0 12px 28px rgba(199, 125, 255, 0.5);
+    }
+    .footer-note {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid #2a2a33;
+      color: #8a8c9a;
+    }
+    .footer-note i {
+      color: #c77dff;
+    }
+    @media (max-width: 768px) {
+      .profile-header { flex-direction: column; align-items: start; }
+      h2 { font-size: 1.8rem; }
+      .two-col { grid-template-columns: 1fr; }
+      .name-title h1 { font-size: 2rem; }
+      .contact-details { gap: 1rem; flex-wrap: wrap; }
+      .profile-right { margin-top: 0.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 1.5rem 1rem; }
+      .company-logo { width: 60px; height: 60px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER with company logo image -->
+    <div class="profile-header">
+      <div class="name-title">
+        <h1>MEDIA SQUARE <span class="violet">EVENTS LLC</span></h1>
+        <div class="subhead">Creative Media Production & Event Solutions</div>
+        <div class="contact-details">
+          <span><i class="fas fa-phone-alt violet"></i> +971 56 715 8114</span>
+          <span><i class="fas fa-envelope violet"></i> info@mediasquare.ae</span>
+          <span><i class="fas fa-map-marker-alt violet"></i> Sharjah Media City, UAE</span>
+        </div>
+      </div>
+      <div class="profile-right">
+        <div class="profile-badge">
+          <i class="fas fa-crown violet" style="margin-right: 8px;"></i> UAE's Creative Partner
+        </div>
+        <!-- YOUR COMPANY LOGO PNG (Google Drive thumbnail) -->
+        <img class="company-logo" src="https://drive.google.com/thumbnail?id=1yNTIpb3K9G5hJUcK71-5sD_gEEjBH4Gb&sz=w1000" alt="Media Square Events LLC Logo">
+      </div>
+    </div>
+
+    <!-- ABOUT US (summary card) -->
+    <div class="summary-card">
+      <p><strong><i class="fas fa-bullhorn violet"></i> About Media Square Events LLC</strong><br><br>
+      Media Square Events LLC is a creative media and event solutions company specializing in high-quality visual storytelling and professional event coverage. We focus on delivering impactful content that helps brands grow their presence and connect with their audience. Based in the United Arab Emirates, we blend cinematic artistry with strategic digital media to produce work that resonates.</p>
+    </div>
+
+    <!-- OUR SERVICES SECTION -->
+    <h2><i class="fas fa-cogs violet" style="margin-right: 10px;"></i> Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-video"></i></div>
+        <h3>Video Production & Editing</h3>
+        <p>From concept to final cut, we produce high-impact videos for commercials, brand stories, and social media campaigns with cinematic quality.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-camera"></i></div>
+        <h3>Cinematography & Photography</h3>
+        <p>Professional coverage using high-end cameras, lighting, and composition to capture authentic moments and stunning visuals.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fab fa-instagram"></i></div>
+        <h3>Social Media Content Creation</h3>
+        <p>Trend-driven short-form content, reels, and engaging assets tailored for Instagram, TikTok, YouTube, and brand channels.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-magic"></i></div>
+        <h3>Motion Graphics & Visual Effects</h3>
+        <p>Eye-catching animations, kinetic typography, and VFX to elevate storytelling and strengthen brand identity.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-calendar-alt"></i></div>
+        <h3>Event Coverage</h3>
+        <p>Corporate galas, weddings, conferences, and live events — full multi-camera coverage, highlight reels, and photo documentation.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Brand Promotion & Digital Media</h3>
+        <p>Strategic media solutions, ad creatives, and promotional content designed to boost engagement and ROI.</p>
+      </div>
+    </div>
+
+    <!-- FEATURED WORK (company projects) -->
+    <h2 style="margin-top: 1rem;"><i class="fas fa-star violet"></i> Featured Projects</h2>
+    <div class="grid-gallery">
+      <a class="media-card" href="https://drive.google.com/file/d/143BRcIrc8tHAIo4bvDfAaacx2fAliX84/view?usp=drive_link" target="_blank">
+        <div class="media-thumb">
+          <img src="https://drive.google.com/thumbnail?id=15pe4FJAE14iXwWzv4K8qu6wqJfObooWF&sz=w1000" alt="corporate promo">
+          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
+        </div>
+        <div class="media-caption">
+          <span>Brand Film</span>
+          <i class="fas fa-film violet"></i>
+        </div>
+      </a>
+      <a class="media-card" href="https://drive.google.com/file/d/1JtsEZcRJtmyXUOvkInoxYcKHSK8OlzlG/view?usp=drive_link" target="_blank">
+        <div class="media-thumb">
+          <img src="https://drive.google.com/thumbnail?id=1p-O21hCn_Dg8OQ1iOtY_-Xt7wbsgvYWB&sz=w1000" alt="event highlight">
+          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
+        </div>
+        <div class="media-caption">
+          <span>Event Reel</span>
+          <i class="fas fa-film violet"></i>
+        </div>
+      </a>
+      <a class="media-card" href="https://drive.google.com/file/d/1ANp2qhGYJy6ANGRJw9WknscCQPNc61NT/view?usp=drive_link" target="_blank">
+        <div class="media-thumb">
+          <img src="https://drive.google.com/thumbnail?id=1DLIcawO69xVYpA77Uspf-A2RAWcn3gdd&sz=w1000" alt="motion graphics">
+          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
+        </div>
+        <div class="media-caption">
+          <span>Motion Reel</span>
+          <i class="fas fa-film violet"></i>
+        </div>
+      </a>
+      <a class="media-card" href="https://drive.google.com/file/d/1OUHOE5xUk45O3W0NjP-FZJr3cNuDSPKO/view?usp=drive_link" target="_blank">
+        <div class="media-thumb">
+          <img src="https://drive.google.com/thumbnail?id=10IZWvdrMrOZJUMy-e9rU5mtY7E1MeTHT&sz=w1000" alt="commercial ad">
+          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
+        </div>
+        <div class="media-caption">
+          <span>Commercial</span>
+          <i class="fas fa-film violet"></i>
+        </div>
+      </a>
+    </div>
+
+    <!-- LATEST PRODUCTIONS -->
+    <h2 style="margin-top: 3rem;"><i class="fas fa-clock violet"></i> Recent Productions</h2>
+    <div class="grid-gallery">
+      <a class="media-card" href="https://drive.google.com/file/d/1U4qlkHlx3QSKyspnVXG51S3O8eTih6hL/view?usp=sharing" target="_blank">
+        <div class="media-thumb">
+          <img src="https://drive.google.com/thumbnail?id=1UB7rtaSuyV5Ev0-_95q6_e1BsUGcq8Rn&sz=w1000" alt="wedding cinema">
+          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
+        </div>
+        <div class="media-caption">
+          <span>Wedding Highlight</span>
+          <i class="fas fa-video violet"></i>
+        </div>
+      </a>
+      <a class="media-card" href="https://drive.google.com/file/d/1Jh0KA9bebhz-liIXV87KEqaJztz3g6x6/view?usp=drive_link" target="_blank">
+        <div class="media-thumb">
+          <img src="https://drive.google.com/thumbnail?id=1_DartQ3ofKoLElE1m65-euAJVgjf92Tb&sz=w1000" alt="corporate interview">
+          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
+        </div>
+        <div class="media-caption">
+          <span>Corporate Story</span>
+          <i class="fas fa-video violet"></i>
+        </div>
+      </a>
+      <a class="media-card" href="https://drive.google.com/file/d/1v0pGqFDa_5N613l3Y4RAOi_jJSZ5Jru1/view?usp=drive_link" target="_blank">
+        <div class="media-thumb">
+          <img src="https://drive.google.com/thumbnail?id=1sStlhqqVqLBAG7I8MZoeSAhJ9wirmT8K&sz=w1000" alt="editing breakdown">
+          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
+        </div>
+        <div class="media-caption">
+          <span>Editing Breakdown</span>
+          <i class="fas fa-video violet"></i>
+        </div>
+      </a>
+      <a class="media-card" href="https://drive.google.com/file/d/1VEwQCCxbVTqlq6tja9CCCxsbg2BN034k/view?usp=drive_link" target="_blank">
+        <div class="media-thumb">
+          <img src="https://drive.google.com/thumbnail?id=1syJsiS_rxTqyC-2s0V0w82J9ZvIS3U4q&sz=w1000" alt="event aftermovie">
+          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
+        </div>
+        <div class="media-caption">
+          <span>Event Aftermovie</span>
+          <i class="fas fa-video violet"></i>
+        </div>
+      </a>
+    </div>
+
+    <!-- OUR EXPERTISE + WHY CHOOSE US (two-col) -->
+    <div class="two-col" style="margin-top: 2rem;">
+      <div class="info-block">
+        <h3><i class="fas fa-microchip violet"></i> Our Expertise</h3>
+        <p style="margin-bottom: 1rem; color: #bcbfd0;">Cinematic-quality visuals tailored for modern platforms like Instagram, YouTube, and commercial advertising.</p>
+        <div class="tech-chips">
+          <span class="lang-chip">Premiere Pro</span>
+          <span class="lang-chip">After Effects</span>
+          <span class="lang-chip">DaVinci Resolve</span>
+          <span class="lang-chip">Photoshop</span>
+          <span class="lang-chip">Illustrator</span>
+          <span class="lang-chip">Lightroom</span>
+          <span class="lang-chip">Sony Cinema Line</span>
+          <span class="lang-chip">DJI Drones</span>
+        </div>
+        <div class="skills-grid">
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Full post-production workflow</li>
+            <li><i class="fas fa-check-circle"></i> Color grading & correction</li>
+            <li><i class="fas fa-check-circle"></i> Motion graphics & VFX</li>
+            <li><i class="fas fa-check-circle"></i> Sound design & mixing</li>
+          </ul>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Multi-camera event coverage</li>
+            <li><i class="fas fa-check-circle"></i> Social media optimization</li>
+            <li><i class="fas fa-check-circle"></i> Brand storytelling</li>
+            <li><i class="fas fa-check-circle"></i> Cinematography & lighting</li>
+          </ul>
+        </div>
+      </div>
+      <div class="info-block">
+        <h3><i class="fas fa-trophy violet"></i> Why Choose Us</h3>
+        <ul class="why-list">
+          <li><i class="fas fa-check-circle violet"></i> <strong>Professional & creative approach</strong> – we blend artistry with strategy.</li>
+          <li><i class="fas fa-check-circle violet"></i> <strong>High-quality cinematic output</strong> – every frame is crafted to impress.</li>
+          <li><i class="fas fa-check-circle violet"></i> <strong>Fast delivery & client-focused service</strong> – we respect deadlines and communication.</li>
+          <li><i class="fas fa-check-circle violet"></i> <strong>Experience in social media trends</strong> – content that performs and engages.</li>
+          <li><i class="fas fa-check-circle violet"></i> <strong>End-to-end production</strong> – from pre-production to final export.</li>
+        </ul>
+        <div style="margin-top: 1.5rem; background: #2a2a33; height: 1px;"></div>
+        <p style="margin-top: 1.2rem; color: #c77dff;"><i class="fas fa-globe"></i> Trusted by brands across UAE & beyond</p>
+      </div>
+    </div>
+
+    <!-- MISSION & VISION SECTION -->
+    <div class="two-col" style="margin-top: 0;">
+      <div class="info-block">
+        <h3><i class="fas fa-bullseye violet"></i> Our Mission</h3>
+        <p style="font-size: 1rem; line-height: 1.5;">To provide creative, high-quality media solutions that elevate brands and create lasting impressions. We combine technical mastery with bold storytelling to help clients stand out in a crowded digital world.</p>
+      </div>
+      <div class="info-block">
+        <h3><i class="fas fa-eye violet"></i> Our Vision</h3>
+        <p style="font-size: 1rem; line-height: 1.5;">To become a leading media and event production company in the UAE, recognized for creativity, reliability, and innovation — setting new standards for visual content across the region.</p>
+      </div>
+    </div>
+
+    <!-- CALL TO ACTION: FULL PORTFOLIO BUTTON -->
+    <div class="portfolio-btn-wrapper">
+      <a href="https://drive.google.com/drive/folders/1EsnipOi4SHc0y4BVYkePprSiIEQR_WCd?usp=drive_link" target="_blank" class="portfolio-btn">
+        <i class="fas fa-folder-open"></i> Explore Full Portfolio (Drive)
+      </a>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-note">
+      <p><i class="fas fa-circle violet" style="font-size: 0.5rem; vertical-align: middle;"></i>  MEDIA SQUARE EVENTS LLC · Creative Media & Event Solutions  <i class="fas fa-circle violet" style="font-size: 0.5rem; vertical-align: middle;"></i></p>
+      <p style="font-size: 0.9rem; margin-top: 0.8rem;">UAE-based | cinematic storytelling | from concept to screen</p>
+    </div>
+  </div>
+</body>
+</html>
