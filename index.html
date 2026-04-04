@@ -1,581 +1,1086 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Media Square Events LLC | Creative Media & Event Solutions</title>
-  <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Fonts: Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background-color: #0b0b0f;
-      font-family: 'Inter', sans-serif;
-      color: #f0f2f5;
-      line-height: 1.5;
-      scroll-behavior: smooth;
-    }
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-    }
-    .violet {
-      color: #c77dff;
-    }
-    h2 {
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 2rem;
-      border-left: 6px solid #c77dff;
-      padding-left: 1.2rem;
-    }
-    .card {
-      background: #16161e;
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.6);
-      transition: transform 0.2s, box-shadow 0.2s;
-      border: 1px solid #2a2a33;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 25px 40px -12px #c77dff40;
-      border-color: #c77dff;
-    }
-    .lang-chip {
-      background: #2a2a33;
-      color: #e0e0e0;
-      padding: 0.5rem 1.2rem;
-      border-radius: 40px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      display: inline-block;
-      border: 1px solid #3a3a48;
-    }
-    .lang-chip i {
-      color: #c77dff;
-      margin-right: 6px;
-    }
-    .grid-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.8rem;
-      margin-top: 1.5rem;
-    }
-    .media-card {
-      background: #16161e;
-      border-radius: 1.5rem;
-      overflow: hidden;
-      border: 1px solid #2a2a33;
-      transition: 0.2s;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-    .media-card:hover {
-      border-color: #c77dff;
-      transform: scale(1.01);
-    }
-    .media-thumb {
-      position: relative;
-      width: 100%;
-      height: 200px;
-      background: #22222e;
-      overflow: hidden;
-    }
-    .media-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .play-overlay {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    .media-card:hover .play-overlay {
-      opacity: 1;
-    }
-    .play-icon {
-      background: #c77dff;
-      color: #0b0b0f;
-      width: 52px;
-      height: 52px;
-      border-radius: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      box-shadow: 0 0 20px #c77dffaa;
-    }
-    .media-caption {
-      padding: 1rem 1.2rem 1.2rem;
-      font-weight: 500;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .media-caption span {
-      color: #c77dff;
-      font-size: 0.85rem;
-      background: #2a2a33;
-      padding: 0.2rem 0.8rem;
-      border-radius: 40px;
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.8rem;
-      margin: 2rem 0 2.5rem;
-    }
-    .service-card {
-      background: #16161e;
-      border-radius: 1.5rem;
-      padding: 1.8rem;
-      border: 1px solid #2a2a33;
-      transition: all 0.2s;
-    }
-    .service-card:hover {
-      border-color: #c77dff;
-      transform: translateY(-4px);
-    }
-    .service-icon {
-      font-size: 2.2rem;
-      color: #c77dff;
-      margin-bottom: 1.2rem;
-    }
-    .service-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.8rem;
-      font-weight: 600;
-    }
-    .service-card p {
-      color: #b0b3c0;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-    .two-col {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      margin: 2.5rem 0;
-    }
-    .info-block {
-      background: #16161e;
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      border: 1px solid #2a2a33;
-      height: 100%;
-    }
-    .info-block h3 {
-      font-size: 1.4rem;
-      margin-bottom: 1.2rem;
-      color: #c77dff;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.8rem 1.5rem;
-      margin-bottom: 1rem;
-    }
-    .skills-grid ul {
-      list-style: none;
-    }
-    .skills-grid li {
-      margin-bottom: 0.6rem;
-      font-size: 0.95rem;
-      display: flex;
-      gap: 0.6rem;
-      align-items: flex-start;
-    }
-    .skills-grid li i {
-      color: #c77dff;
-      font-size: 0.85rem;
-      margin-top: 0.2rem;
-      width: 1.1rem;
-    }
-    .tech-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin: 1.2rem 0 1rem;
-    }
-    .why-list {
-      list-style: none;
-      margin-top: 0.5rem;
-    }
-    .why-list li {
-      margin-bottom: 0.9rem;
-      display: flex;
-      gap: 0.8rem;
-      align-items: flex-start;
-    }
-    .why-list li i {
-      color: #c77dff;
-      font-size: 1rem;
-      margin-top: 0.2rem;
-    }
-    .profile-header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      gap: 2rem;
-    }
-    .name-title h1 {
-      font-size: 2.6rem;
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-    }
-    .name-title .violet {
-      color: #c77dff;
-    }
-    .name-title .subhead {
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: #c0c4d0;
-      margin-top: 0.5rem;
-    }
-    .contact-details {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-top: 0.75rem;
-      font-size: 0.95rem;
-      color: #b0b3c0;
-    }
-    .contact-details i {
-      width: 1.2rem;
-    }
-    .profile-right {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-    }
-    .profile-badge {
-      background: #16161e;
-      border-radius: 60px;
-      padding: 0.6rem 1.5rem;
-      border: 1px solid #c77dff;
-      font-weight: 500;
-      box-shadow: 0 0 15px #c77dff30;
-      white-space: nowrap;
-    }
-    /* Logo image styling */
-    .company-logo {
-      width: 75px;
-      height: 75px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #c77dff;
-      box-shadow: 0 0 20px rgba(199, 125, 255, 0.4);
-      background: #1c1c26; /* fallback background */
-    }
-    .summary-card {
-      background: #1c1c26;
-      border-radius: 2rem;
-      padding: 2rem;
-      margin-bottom: 2.5rem;
-      border: 1px solid #32323e;
-      font-size: 1.1rem;
-      color: #dddee9;
-    }
-    .portfolio-btn-wrapper {
-      text-align: center;
-      margin: 3rem 0 2rem;
-    }
-    .portfolio-btn {
-      background: #c77dff;
-      color: #0b0b0f;
-      padding: 0.9rem 2.5rem;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 1.2rem;
-      text-decoration: none;
-      display: inline-block;
-      border: 2px solid #c77dff;
-      transition: all 0.2s;
-      box-shadow: 0 8px 20px rgba(199, 125, 255, 0.3);
-      letter-spacing: 0.5px;
-    }
-    .portfolio-btn i {
-      margin-right: 8px;
-    }
-    .portfolio-btn:hover {
-      background: transparent;
-      color: #c77dff;
-      transform: scale(1.02);
-      box-shadow: 0 12px 28px rgba(199, 125, 255, 0.5);
-    }
-    .footer-note {
-      text-align: center;
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid #2a2a33;
-      color: #8a8c9a;
-    }
-    .footer-note i {
-      color: #c77dff;
-    }
-    @media (max-width: 768px) {
-      .profile-header { flex-direction: column; align-items: start; }
-      h2 { font-size: 1.8rem; }
-      .two-col { grid-template-columns: 1fr; }
-      .name-title h1 { font-size: 2rem; }
-      .contact-details { gap: 1rem; flex-wrap: wrap; }
-      .profile-right { margin-top: 0.5rem; }
-      .services-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) {
-      .container { padding: 1.5rem 1rem; }
-      .company-logo { width: 60px; height: 60px; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Your Agency — Digital Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital@1&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f0e8;
+    --cream: #ede8dc;
+    --gold: #c9a84c;
+    --gold2: #e8c96a;
+    --dark: #111108;
+    --gray: #2a2a25;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    position: fixed;
+    width: 12px; height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,168,76,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 60px;
+    mix-blend-mode: normal;
+  }
+  nav::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.9) 0%, transparent 100%);
+    z-index: -1;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 4px;
+    color: var(--gold);
+  }
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.3s, color 0.3s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 80px 60px;
+  }
+  .hero-slides {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.08);
+    transition: opacity 1.2s cubic-bezier(.4,0,.2,1), transform 6s cubic-bezier(.4,0,.2,1);
+  }
+  .hero-slide.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .hero-slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,10,8,0.75) 0%, rgba(10,10,8,0.3) 50%, rgba(10,10,8,0.6) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+  }
+  .hero-tag {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 10vw, 130px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    margin-bottom: 32px;
+  }
+  .hero-title em {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 0.75em;
+  }
+  .hero-sub {
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0.65;
+    max-width: 420px;
+    margin-bottom: 48px;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--gold);
+    color: var(--black);
+    padding: 16px 36px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s, gap 0.3s;
+  }
+  .hero-cta:hover { background: var(--gold2); gap: 24px; }
+  .hero-cta-arrow { font-size: 18px; }
+
+  .hero-dots {
+    position: absolute;
+    right: 60px;
+    bottom: 80px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hero-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(245,240,232,0.3);
+    cursor: none;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .hero-dot.active { background: var(--gold); transform: scale(1.5); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.4;
+  }
+  .hero-scroll span {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+  }
+  .scroll-line {
+    width: 1px; height: 50px;
+    background: var(--white);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* SECTION BASE */
+  section { position: relative; }
+
+  /* ABOUT / OFFER */
+  .offer {
+    padding: 140px 60px;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+  .offer::before {
+    content: 'FREE';
+    position: absolute;
+    right: -40px; top: 40px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 280px;
+    color: rgba(201,168,76,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--gold);
+  }
+  .offer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+  .offer-left h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 1;
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+  }
+  .offer-left h2 span { color: var(--gold); }
+  .offer-left p {
+    font-size: 15px;
+    line-height: 1.8;
+    opacity: 0.6;
+    max-width: 380px;
+  }
+
+  .offer-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .offer-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 32px 36px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    transition: background 0.3s, border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .offer-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transition: transform 0.3s;
+  }
+  .offer-card:hover { background: rgba(201,168,76,0.05); border-color: rgba(201,168,76,0.2); }
+  .offer-card:hover::before { transform: scaleY(1); }
+  .offer-icon {
+    font-size: 28px;
+    width: 56px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .offer-card-text h3 {
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .offer-card-text p {
+    font-size: 13px;
+    opacity: 0.5;
+    line-height: 1.5;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    padding: 140px 60px;
+    background: var(--black);
+  }
+  .how-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    letter-spacing: 2px;
+    margin-bottom: 80px;
+    line-height: 1;
+  }
+  .how-title span { color: var(--gold); }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .step {
+    padding: 60px 40px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+  }
+  .step:hover { background: rgba(201,168,76,0.04); }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 100px;
+    color: rgba(201,168,76,0.08);
+    line-height: 1;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .step h3 {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .step p {
+    font-size: 13px;
+    line-height: 1.8;
+    opacity: 0.55;
+  }
+  .step-line {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .step:hover .step-line { transform: scaleX(1); }
+
+  /* WORK / PORTFOLIO */
+  .work {
+    padding: 140px 60px;
+    background: var(--dark);
+  }
+  .work-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+  }
+  .work-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+  .work-title span { color: var(--gold); }
+  .work-note {
+    font-size: 12px;
+    opacity: 0.4;
+    letter-spacing: 1px;
+    max-width: 200px;
+    text-align: right;
+    line-height: 1.6;
+  }
+  /* SWIPER */
+  .swiper-wrapper-outer {
+    position: relative;
+    overflow: hidden;
+  }
+  .swiper-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.7s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+  }
+  .work-card {
+    min-width: 380px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    cursor: none;
+  }
+  .work-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+    transition: transform 0.8s cubic-bezier(.4,0,.2,1);
+    display: block;
+  }
+  .work-card:hover img { transform: scale(1); }
+  .work-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,10,8,0.95) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: opacity 0.4s, transform 0.4s;
+  }
+  .work-card:hover .work-card-overlay { opacity: 1; transform: translateY(0); }
+  .work-card-overlay h3 { font-size: 18px; font-weight: 500; margin-bottom: 6px; }
+  .work-card-overlay p { font-size: 12px; opacity: 0.5; letter-spacing: 1px; text-transform: uppercase; }
+  .work-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    transition: gap 0.3s;
+  }
+  .work-card-link:hover { gap: 14px; }
+
+  .swiper-nav {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+    justify-content: flex-end;
+  }
+  .swiper-btn {
+    width: 52px; height: 52px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: transparent;
+    color: var(--white);
+    font-size: 20px;
+    cursor: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+  }
+  .swiper-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
+
+  /* PRICING */
+  .pricing {
+    padding: 140px 60px;
+    background: var(--black);
+    text-align: center;
+  }
+  .pricing-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    letter-spacing: 2px;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .pricing-title span { color: var(--gold); }
+  .pricing-sub {
+    font-size: 14px;
+    opacity: 0.5;
+    margin-bottom: 80px;
+    letter-spacing: 1px;
+  }
+  .pricing-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .pricing-card {
+    padding: 60px 48px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .pricing-card.featured {
+    background: rgba(201,168,76,0.07);
+    border-color: rgba(201,168,76,0.3);
+  }
+  .pricing-card.featured::before {
+    content: 'PAID PLAN';
+    position: absolute;
+    top: 24px; right: 24px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 4px 10px;
+  }
+  .pricing-tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+  .pricing-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .pricing-period {
+    font-size: 13px;
+    opacity: 0.4;
+    margin-bottom: 36px;
+    letter-spacing: 1px;
+  }
+  .pricing-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .pricing-features li {
+    font-size: 13px;
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    line-height: 1.5;
+  }
+  .pricing-features li::before {
+    content: '→';
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .pricing-btn {
+    display: block;
+    text-align: center;
+    padding: 14px 32px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .pricing-card:not(.featured) .pricing-btn {
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white);
+  }
+  .pricing-card:not(.featured) .pricing-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .pricing-card.featured .pricing-btn {
+    background: var(--gold);
+    color: var(--black);
+    font-weight: 500;
+  }
+  .pricing-card.featured .pricing-btn:hover { background: var(--gold2); }
+
+  /* STATS */
+  .stats {
+    padding: 100px 60px;
+    background: var(--gold);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+  .stat {
+    padding: 40px;
+    text-align: center;
+    background: var(--gold);
+    border-right: 1px solid rgba(10,10,8,0.15);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: var(--black);
+    line-height: 1;
+    letter-spacing: 2px;
+  }
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(10,10,8,0.6);
+    margin-top: 8px;
+  }
+
+  /* CONTACT / CTA */
+  .contact {
+    padding: 160px 60px;
+    background: var(--dark);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 600px 400px at 50% 50%, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .contact-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 10vw, 140px);
+    line-height: 0.9;
+    letter-spacing: 2px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .contact-title span { color: var(--gold); }
+  .contact-sub {
+    font-size: 15px;
+    opacity: 0.5;
+    max-width: 400px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 20px 48px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.4s;
+  }
+  .contact-btn:hover {
+    background: var(--gold);
+    color: var(--black);
+    gap: 24px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 60px;
+    background: var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 4px;
+    color: var(--gold);
+  }
+  .footer-copy {
+    font-size: 12px;
+    opacity: 0.3;
+    letter-spacing: 1px;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 24px 28px; }
+    .nav-links { display: none; }
+    .hero { padding: 80px 28px; }
+    .hero-dots { right: 28px; bottom: 60px; }
+    .offer, .how, .work, .pricing, .contact { padding: 100px 28px; }
+    .offer-grid { grid-template-columns: 1fr; gap: 60px; }
+    .steps { grid-template-columns: 1fr; }
+    .pricing-cards { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .work-card { min-width: 280px; height: 380px; }
+    footer { padding: 36px 28px; flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <!-- HEADER with company logo image -->
-    <div class="profile-header">
-      <div class="name-title">
-        <h1>MEDIA SQUARE <span class="violet">EVENTS LLC</span></h1>
-        <div class="subhead">Creative Media Production & Event Solutions</div>
-        <div class="contact-details">
-          <span><i class="fas fa-phone-alt violet"></i> +971 56 715 8114</span>
-          <span><i class="fas fa-envelope violet"></i> info@mediasquare.ae</span>
-          <span><i class="fas fa-map-marker-alt violet"></i> Sharjah Media City, UAE</span>
-        </div>
-      </div>
-      <div class="profile-right">
-        <div class="profile-badge">
-          <i class="fas fa-crown violet" style="margin-right: 8px;"></i> UAE's Creative Partner
-        </div>
-        <!-- YOUR COMPANY LOGO PNG (Google Drive thumbnail) -->
-        <img class="company-logo" src="https://drive.google.com/thumbnail?id=1yNTIpb3K9G5hJUcK71-5sD_gEEjBH4Gb&sz=w1000" alt="Media Square Events LLC Logo">
-      </div>
-    </div>
 
-    <!-- ABOUT US (summary card) -->
-    <div class="summary-card">
-      <p><strong><i class="fas fa-bullhorn violet"></i> About Media Square Events LLC</strong><br><br>
-      Media Square Events LLC is a creative media and event solutions company specializing in high-quality visual storytelling and professional event coverage. We focus on delivering impactful content that helps brands grow their presence and connect with their audience. Based in the United Arab Emirates, we blend cinematic artistry with strategic digital media to produce work that resonates.</p>
-    </div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-    <!-- OUR SERVICES SECTION -->
-    <h2><i class="fas fa-cogs violet" style="margin-right: 10px;"></i> Our Services</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-video"></i></div>
-        <h3>Video Production & Editing</h3>
-        <p>From concept to final cut, we produce high-impact videos for commercials, brand stories, and social media campaigns with cinematic quality.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-camera"></i></div>
-        <h3>Cinematography & Photography</h3>
-        <p>Professional coverage using high-end cameras, lighting, and composition to capture authentic moments and stunning visuals.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fab fa-instagram"></i></div>
-        <h3>Social Media Content Creation</h3>
-        <p>Trend-driven short-form content, reels, and engaging assets tailored for Instagram, TikTok, YouTube, and brand channels.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-magic"></i></div>
-        <h3>Motion Graphics & Visual Effects</h3>
-        <p>Eye-catching animations, kinetic typography, and VFX to elevate storytelling and strengthen brand identity.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-calendar-alt"></i></div>
-        <h3>Event Coverage</h3>
-        <p>Corporate galas, weddings, conferences, and live events — full multi-camera coverage, highlight reels, and photo documentation.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-chart-line"></i></div>
-        <h3>Brand Promotion & Digital Media</h3>
-        <p>Strategic media solutions, ad creatives, and promotional content designed to boost engagement and ROI.</p>
-      </div>
-    </div>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">YOUR AGENCY</div>
+  <ul class="nav-links">
+    <li><a href="#offer">What We Offer</a></li>
+    <li><a href="#work">Our Work</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <!-- FEATURED WORK (company projects) -->
-    <h2 style="margin-top: 1rem;"><i class="fas fa-star violet"></i> Featured Projects</h2>
-    <div class="grid-gallery">
-      <a class="media-card" href="https://drive.google.com/file/d/143BRcIrc8tHAIo4bvDfAaacx2fAliX84/view?usp=drive_link" target="_blank">
-        <div class="media-thumb">
-          <img src="https://drive.google.com/thumbnail?id=15pe4FJAE14iXwWzv4K8qu6wqJfObooWF&sz=w1000" alt="corporate promo">
-          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
-        </div>
-        <div class="media-caption">
-          <span>Brand Film</span>
-          <i class="fas fa-film violet"></i>
-        </div>
-      </a>
-      <a class="media-card" href="https://drive.google.com/file/d/1JtsEZcRJtmyXUOvkInoxYcKHSK8OlzlG/view?usp=drive_link" target="_blank">
-        <div class="media-thumb">
-          <img src="https://drive.google.com/thumbnail?id=1p-O21hCn_Dg8OQ1iOtY_-Xt7wbsgvYWB&sz=w1000" alt="event highlight">
-          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
-        </div>
-        <div class="media-caption">
-          <span>Event Reel</span>
-          <i class="fas fa-film violet"></i>
-        </div>
-      </a>
-      <a class="media-card" href="https://drive.google.com/file/d/1ANp2qhGYJy6ANGRJw9WknscCQPNc61NT/view?usp=drive_link" target="_blank">
-        <div class="media-thumb">
-          <img src="https://drive.google.com/thumbnail?id=1DLIcawO69xVYpA77Uspf-A2RAWcn3gdd&sz=w1000" alt="motion graphics">
-          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
-        </div>
-        <div class="media-caption">
-          <span>Motion Reel</span>
-          <i class="fas fa-film violet"></i>
-        </div>
-      </a>
-      <a class="media-card" href="https://drive.google.com/file/d/1OUHOE5xUk45O3W0NjP-FZJr3cNuDSPKO/view?usp=drive_link" target="_blank">
-        <div class="media-thumb">
-          <img src="https://drive.google.com/thumbnail?id=10IZWvdrMrOZJUMy-e9rU5mtY7E1MeTHT&sz=w1000" alt="commercial ad">
-          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
-        </div>
-        <div class="media-caption">
-          <span>Commercial</span>
-          <i class="fas fa-film violet"></i>
-        </div>
-      </a>
-    </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-slides" id="heroSlides">
+    <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1616469829581-73993eb86b02?w=1800&q=80')"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1800&q=80')"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=1800&q=80')"></div>
+    <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1800&q=80')"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag reveal">Digital Marketing Agency — India</div>
+    <h1 class="hero-title reveal reveal-delay-1">
+      We Make<br><em>Brands</em><br>Unforgettable
+    </h1>
+    <p class="hero-sub reveal reveal-delay-2">
+      High-quality reels, corporate videos & daily content — crafted to grow your business from day one.
+    </p>
+    <a href="#offer" class="hero-cta reveal reveal-delay-3">
+      Start Free <span class="hero-cta-arrow">→</span>
+    </a>
+  </div>
+  <div class="hero-dots" id="heroDots">
+    <div class="hero-dot active" data-index="0"></div>
+    <div class="hero-dot" data-index="1"></div>
+    <div class="hero-dot" data-index="2"></div>
+    <div class="hero-dot" data-index="3"></div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
 
-    <!-- LATEST PRODUCTIONS -->
-    <h2 style="margin-top: 3rem;"><i class="fas fa-clock violet"></i> Recent Productions</h2>
-    <div class="grid-gallery">
-      <a class="media-card" href="https://drive.google.com/file/d/1U4qlkHlx3QSKyspnVXG51S3O8eTih6hL/view?usp=sharing" target="_blank">
-        <div class="media-thumb">
-          <img src="https://drive.google.com/thumbnail?id=1UB7rtaSuyV5Ev0-_95q6_e1BsUGcq8Rn&sz=w1000" alt="wedding cinema">
-          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
-        </div>
-        <div class="media-caption">
-          <span>Wedding Highlight</span>
-          <i class="fas fa-video violet"></i>
-        </div>
-      </a>
-      <a class="media-card" href="https://drive.google.com/file/d/1Jh0KA9bebhz-liIXV87KEqaJztz3g6x6/view?usp=drive_link" target="_blank">
-        <div class="media-thumb">
-          <img src="https://drive.google.com/thumbnail?id=1_DartQ3ofKoLElE1m65-euAJVgjf92Tb&sz=w1000" alt="corporate interview">
-          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
-        </div>
-        <div class="media-caption">
-          <span>Corporate Story</span>
-          <i class="fas fa-video violet"></i>
-        </div>
-      </a>
-      <a class="media-card" href="https://drive.google.com/file/d/1v0pGqFDa_5N613l3Y4RAOi_jJSZ5Jru1/view?usp=drive_link" target="_blank">
-        <div class="media-thumb">
-          <img src="https://drive.google.com/thumbnail?id=1sStlhqqVqLBAG7I8MZoeSAhJ9wirmT8K&sz=w1000" alt="editing breakdown">
-          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
-        </div>
-        <div class="media-caption">
-          <span>Editing Breakdown</span>
-          <i class="fas fa-video violet"></i>
-        </div>
-      </a>
-      <a class="media-card" href="https://drive.google.com/file/d/1VEwQCCxbVTqlq6tja9CCCxsbg2BN034k/view?usp=drive_link" target="_blank">
-        <div class="media-thumb">
-          <img src="https://drive.google.com/thumbnail?id=1syJsiS_rxTqyC-2s0V0w82J9ZvIS3U4q&sz=w1000" alt="event aftermovie">
-          <div class="play-overlay"><div class="play-icon"><i class="fas fa-play"></i></div></div>
-        </div>
-        <div class="media-caption">
-          <span>Event Aftermovie</span>
-          <i class="fas fa-video violet"></i>
-        </div>
-      </a>
+<!-- OFFER -->
+<section class="offer" id="offer">
+  <div class="section-label reveal">What We Offer</div>
+  <div class="offer-grid">
+    <div class="offer-left">
+      <h2 class="reveal">Your First Month<br>Is On <span>Us.</span></h2>
+      <p class="reveal reveal-delay-1">
+        We believe in earning your trust through results — not promises. That's why we give you a complete content campaign for free. No contracts, no risk.
+      </p>
     </div>
-
-    <!-- OUR EXPERTISE + WHY CHOOSE US (two-col) -->
-    <div class="two-col" style="margin-top: 2rem;">
-      <div class="info-block">
-        <h3><i class="fas fa-microchip violet"></i> Our Expertise</h3>
-        <p style="margin-bottom: 1rem; color: #bcbfd0;">Cinematic-quality visuals tailored for modern platforms like Instagram, YouTube, and commercial advertising.</p>
-        <div class="tech-chips">
-          <span class="lang-chip">Premiere Pro</span>
-          <span class="lang-chip">After Effects</span>
-          <span class="lang-chip">DaVinci Resolve</span>
-          <span class="lang-chip">Photoshop</span>
-          <span class="lang-chip">Illustrator</span>
-          <span class="lang-chip">Lightroom</span>
-          <span class="lang-chip">Sony Cinema Line</span>
-          <span class="lang-chip">DJI Drones</span>
-        </div>
-        <div class="skills-grid">
-          <ul>
-            <li><i class="fas fa-check-circle"></i> Full post-production workflow</li>
-            <li><i class="fas fa-check-circle"></i> Color grading & correction</li>
-            <li><i class="fas fa-check-circle"></i> Motion graphics & VFX</li>
-            <li><i class="fas fa-check-circle"></i> Sound design & mixing</li>
-          </ul>
-          <ul>
-            <li><i class="fas fa-check-circle"></i> Multi-camera event coverage</li>
-            <li><i class="fas fa-check-circle"></i> Social media optimization</li>
-            <li><i class="fas fa-check-circle"></i> Brand storytelling</li>
-            <li><i class="fas fa-check-circle"></i> Cinematography & lighting</li>
-          </ul>
+    <div class="offer-cards">
+      <div class="offer-card reveal reveal-delay-1">
+        <div class="offer-icon">🎬</div>
+        <div class="offer-card-text">
+          <h3>4 Reel Videos</h3>
+          <p>Professionally shot & edited short-form videos for Instagram & Facebook</p>
         </div>
       </div>
-      <div class="info-block">
-        <h3><i class="fas fa-trophy violet"></i> Why Choose Us</h3>
-        <ul class="why-list">
-          <li><i class="fas fa-check-circle violet"></i> <strong>Professional & creative approach</strong> – we blend artistry with strategy.</li>
-          <li><i class="fas fa-check-circle violet"></i> <strong>High-quality cinematic output</strong> – every frame is crafted to impress.</li>
-          <li><i class="fas fa-check-circle violet"></i> <strong>Fast delivery & client-focused service</strong> – we respect deadlines and communication.</li>
-          <li><i class="fas fa-check-circle violet"></i> <strong>Experience in social media trends</strong> – content that performs and engages.</li>
-          <li><i class="fas fa-check-circle violet"></i> <strong>End-to-end production</strong> – from pre-production to final export.</li>
-        </ul>
-        <div style="margin-top: 1.5rem; background: #2a2a33; height: 1px;"></div>
-        <p style="margin-top: 1.2rem; color: #c77dff;"><i class="fas fa-globe"></i> Trusted by brands across UAE & beyond</p>
+      <div class="offer-card reveal reveal-delay-2">
+        <div class="offer-icon">🎥</div>
+        <div class="offer-card-text">
+          <h3>1 Corporate Video</h3>
+          <p>Brand story, product showcase or company profile — cinematic quality</p>
+        </div>
       </div>
-    </div>
-
-    <!-- MISSION & VISION SECTION -->
-    <div class="two-col" style="margin-top: 0;">
-      <div class="info-block">
-        <h3><i class="fas fa-bullseye violet"></i> Our Mission</h3>
-        <p style="font-size: 1rem; line-height: 1.5;">To provide creative, high-quality media solutions that elevate brands and create lasting impressions. We combine technical mastery with bold storytelling to help clients stand out in a crowded digital world.</p>
+      <div class="offer-card reveal reveal-delay-3">
+        <div class="offer-icon">🖼️</div>
+        <div class="offer-card-text">
+          <h3>Daily Posters</h3>
+          <p>30 custom-designed social media graphics over the month</p>
+        </div>
       </div>
-      <div class="info-block">
-        <h3><i class="fas fa-eye violet"></i> Our Vision</h3>
-        <p style="font-size: 1rem; line-height: 1.5;">To become a leading media and event production company in the UAE, recognized for creativity, reliability, and innovation — setting new standards for visual content across the region.</p>
-      </div>
-    </div>
-
-    <!-- CALL TO ACTION: FULL PORTFOLIO BUTTON -->
-    <div class="portfolio-btn-wrapper">
-      <a href="https://drive.google.com/drive/folders/1EsnipOi4SHc0y4BVYkePprSiIEQR_WCd?usp=drive_link" target="_blank" class="portfolio-btn">
-        <i class="fas fa-folder-open"></i> Explore Full Portfolio (Drive)
-      </a>
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer-note">
-      <p><i class="fas fa-circle violet" style="font-size: 0.5rem; vertical-align: middle;"></i>  MEDIA SQUARE EVENTS LLC · Creative Media & Event Solutions  <i class="fas fa-circle violet" style="font-size: 0.5rem; vertical-align: middle;"></i></p>
-      <p style="font-size: 0.9rem; margin-top: 0.8rem;">UAE-based | cinematic storytelling | from concept to screen</p>
     </div>
   </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-label reveal">Process</div>
+  <h2 class="how-title reveal">How It <span>Works</span></h2>
+  <div class="steps">
+    <div class="step reveal">
+      <span class="step-num">01</span>
+      <h3>We Approach You</h3>
+      <p>We reach out to local businesses, understand your brand, and create a content strategy tailored specifically for you.</p>
+      <div class="step-line"></div>
+    </div>
+    <div class="step reveal reveal-delay-1">
+      <span class="step-num">02</span>
+      <h3>Free Month Campaign</h3>
+      <p>We deliver 4 reels, 1 corporate video, and 30 daily posters — completely free. You see real results before spending a rupee.</p>
+      <div class="step-line"></div>
+    </div>
+    <div class="step reveal reveal-delay-2">
+      <span class="step-num">03</span>
+      <h3>You Decide</h3>
+      <p>If you love the results, continue with our ₹7,000/month plan. If not — no pressure, no hard feelings. Simple as that.</p>
+      <div class="step-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="work-header">
+    <div>
+      <div class="section-label reveal">Portfolio</div>
+      <h2 class="work-title reveal">Our <span>Work</span></h2>
+    </div>
+    <p class="work-note reveal">Sample work — your links will be added here</p>
+  </div>
+  <div class="swiper-wrapper-outer">
+    <div class="swiper-track" id="swiperTrack">
+
+      <div class="work-card">
+        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&q=80" alt="Reel Production"/>
+        <div class="work-card-overlay">
+          <h3>Product Reel</h3>
+          <p>Short Form Video</p>
+          <a href="YOUR_DRIVE_LINK_HERE" class="work-card-link" target="_blank">View Project →</a>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600&q=80" alt="Corporate Video"/>
+        <div class="work-card-overlay">
+          <h3>Corporate Video</h3>
+          <p>Brand Film</p>
+          <a href="YOUR_DRIVE_LINK_HERE" class="work-card-link" target="_blank">View Project →</a>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&q=80" alt="Social Media"/>
+        <div class="work-card-overlay">
+          <h3>Social Media Pack</h3>
+          <p>Daily Posters</p>
+          <a href="YOUR_DRIVE_LINK_HERE" class="work-card-link" target="_blank">View Project →</a>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=80" alt="Event Coverage"/>
+        <div class="work-card-overlay">
+          <h3>Event Coverage</h3>
+          <p>Photo & Video</p>
+          <a href="YOUR_DRIVE_LINK_HERE" class="work-card-link" target="_blank">View Project →</a>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80" alt="Brand Campaign"/>
+        <div class="work-card-overlay">
+          <h3>Brand Campaign</h3>
+          <p>Full Production</p>
+          <a href="YOUR_DRIVE_LINK_HERE" class="work-card-link" target="_blank">View Project →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="swiper-nav">
+    <button class="swiper-btn" id="prevBtn">←</button>
+    <button class="swiper-btn" id="nextBtn">→</button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat reveal">
+    <div class="stat-num">5+</div>
+    <div class="stat-label">Free Trial Clients</div>
+  </div>
+  <div class="stat reveal reveal-delay-1">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Reels Per Month</div>
+  </div>
+  <div class="stat reveal reveal-delay-2">
+    <div class="stat-num">30</div>
+    <div class="stat-label">Posters Monthly</div>
+  </div>
+  <div class="stat reveal reveal-delay-3">
+    <div class="stat-num">4+</div>
+    <div class="stat-label">Years Experience</div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-label reveal" style="justify-content:center">Pricing</div>
+  <h2 class="pricing-title reveal">Simple. <span>Honest.</span> Affordable.</h2>
+  <p class="pricing-sub reveal">No hidden fees. No long-term lock-ins. Just results.</p>
+  <div class="pricing-cards">
+    <div class="pricing-card reveal">
+      <span class="pricing-tag">Starter — Free</span>
+      <div class="pricing-price">₹0</div>
+      <div class="pricing-period">First month, no commitment</div>
+      <ul class="pricing-features">
+        <li>4 professionally edited Reels</li>
+        <li>1 Corporate / Brand Video</li>
+        <li>30 custom-designed Posters</li>
+        <li>Social media strategy</li>
+        <li>No contract required</li>
+      </ul>
+      <a href="#contact" class="pricing-btn">Get Started Free</a>
+    </div>
+    <div class="pricing-card featured reveal reveal-delay-1">
+      <span class="pricing-tag">Growth</span>
+      <div class="pricing-price">₹7K</div>
+      <div class="pricing-period">Per month, after free trial</div>
+      <ul class="pricing-features">
+        <li>Everything in Free plan</li>
+        <li>Ongoing content creation</li>
+        <li>Monthly strategy review</li>
+        <li>Priority support</li>
+        <li>Cancel anytime</li>
+      </ul>
+      <a href="#contact" class="pricing-btn">Start Free Trial</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label reveal" style="justify-content:center">Get In Touch</div>
+  <h2 class="contact-title reveal">Let's Build<br><span>Something</span><br>Great.</h2>
+  <p class="contact-sub reveal">Ready to grow your brand? We'll start your free campaign within 48 hours of getting in touch.</p>
+  <a href="mailto:your@email.com" class="contact-btn reveal reveal-delay-1">
+    Contact Us <span>→</span>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">YOUR AGENCY</div>
+  <div class="footer-copy">© 2025 — All rights reserved</div>
+</footer>
+
+<script>
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+    setTimeout(() => {
+      ring.style.left = mx + 'px';
+      ring.style.top = my + 'px';
+    }, 80);
+  });
+  document.querySelectorAll('a, button, .hero-dot').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '24px';
+      cursor.style.height = '24px';
+      ring.style.width = '60px';
+      ring.style.height = '60px';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '12px';
+      cursor.style.height = '12px';
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+    });
+  });
+
+  // HERO SLIDESHOW
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  let current = 0, heroTimer;
+
+  function goToSlide(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function startHero() {
+    heroTimer = setInterval(() => goToSlide(current + 1), 5000);
+  }
+  startHero();
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      clearInterval(heroTimer);
+      goToSlide(parseInt(dot.dataset.index));
+      startHero();
+    });
+  });
+
+  // SWIPER
+  const track = document.getElementById('swiperTrack');
+  const cards = track.querySelectorAll('.work-card');
+  let swiperIndex = 0;
+  const cardW = () => cards[0].offsetWidth + 20;
+  const maxIndex = () => Math.max(0, cards.length - Math.floor(track.parentElement.offsetWidth / cardW()));
+
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    if (swiperIndex < maxIndex()) {
+      swiperIndex++;
+      track.style.transform = `translateX(-${swiperIndex * cardW()}px)`;
+    }
+  });
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    if (swiperIndex > 0) {
+      swiperIndex--;
+      track.style.transform = `translateX(-${swiperIndex * cardW()}px)`;
+    }
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+  track.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (diff > 50 && swiperIndex < maxIndex()) { swiperIndex++; track.style.transform = `translateX(-${swiperIndex * cardW()}px)`; }
+    if (diff < -50 && swiperIndex > 0) { swiperIndex--; track.style.transform = `translateX(-${swiperIndex * cardW()}px)`; }
+  });
+
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
